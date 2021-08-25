@@ -3,7 +3,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+"もともとVundleだったっぽいけど本読んでpathgenに切り替えた
+"Plugin 'VundleVim/Vundle.vim'
+execute pathoge#infect()
+execute pathogen#helptags()
 
 " 導入したいプラグインを以下に列挙
 " Plugin '[Github Author]/[Github repo]' の形式で記入
