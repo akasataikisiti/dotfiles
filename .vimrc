@@ -1,19 +1,12 @@
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
 "もともとVundleだったっぽいけど本読んでpathgenに切り替えた
 "Plugin 'VundleVim/Vundle.vim'
-execute pathoge#infect()
-execute pathogen#helptags()
+execute pathogen#infect()
+filetype plugin indent on
 
 " 導入したいプラグインを以下に列挙
 " Plugin '[Github Author]/[Github repo]' の形式で記入
-Plugin 'yuratomo/w3m.vim'
 
-call vundle#end()
-filetype plugin indent on
 
 
 "本読んでカスタマイズした。"
@@ -36,3 +29,7 @@ set smartcase "検索文字列に大文字が含まれている場合は区別�
 
 "##########環境設定################
 set vb t_vb=  "ビープ音ならないようにする"
+
+"##########本読んで追加#########
+nnoremap <Leader>ev :e ~/dotfiles/.vimrc
+nnoremap <Leader>cv :e ~/dotfiles/cheatsheets/vim.txt
