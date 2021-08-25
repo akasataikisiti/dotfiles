@@ -4,6 +4,3 @@
 [submodule ".vim/bundle/vim-commentary"]
 	path = .vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule ".vim/bundle/bundle/deep-space"]
-	path = .vim/bundle/bundle/deep-space
-	url = https://github.com/tyrannicaltoucan/vim-deep-space
