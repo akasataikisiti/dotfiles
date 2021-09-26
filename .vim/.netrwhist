@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/mnt/d/githubpages/akasataikisiti.github.io/css'
+let g:netrw_dirhist_2='/mnt/d/githubpages/akasataikisiti.github.io'
+let g:netrw_dirhist_1='/mnt/d/勉強用ワークスペース/javascript/ver3/games/CarryIt'
+let g:netrw_dirhist_0='/mnt/d/勉強用ワークスペース/javascript/ver3/games'
+let g:netrw_dirhist_9='/mnt/d/勉強用ワークスペース/javascript/ver3/games/FlipCards'
+let g:netrw_dirhist_8='/mnt/d/勉強用ワークスペース/javascript/ver3/games'
+let g:netrw_dirhist_7='/mnt/d/勉強用ワークスペース/javascript/ver3/games/FlipCards'
+let g:netrw_dirhist_6='/mnt/d/勉強用ワークスペース/javascript/ver3/games'
+let g:netrw_dirhist_5='/mnt/d/勉強用ワークスペース/javascript/ver3/games/FlipCards'
+let g:netrw_dirhist_4='/mnt/d/勉強用ワークスペース/javascript/ver3/games'

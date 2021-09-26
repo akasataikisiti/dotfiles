@@ -1,0 +1,70 @@
+memo1
+for use github.make directory ~/dotfiles and previous etc files(~/.vimrc is symboric rync for ~/dotfiles/.vimrc)
+
+###Cheat Part0###
+:! <linuxコマンド>   : リナックスコマンドを実行
+:r!<linuxコマンド>   : リナックスコマンドを実行、結果をテキスト上に表示
+:term                 : Start-up tarminal-mode in vim."exit" command use to end.
+###Cheat Part1###
+<Leader> = \
+<Leader>ev  :    open setting file(~/dotfiles/.vimrc)
+<Leader>cv  :    open cheat sheet (~/dotfiles/vim.txt)
+<Leader>m   :    call :MUR 選択ファイルで"o"押したら（水平分割
+                                         "O"おしたら（垂直分割
+:Ex         :    open file manager.(netrwという標準プラグインの機能）
+
+###Cheat Part2####
+*       : Search downword a word under the cursol.
+#       : Search upword a word under the cursol.
+~       : Toggle the case of the character under the cursor.
+<C-a>   : incuement the number to the right of the cursor by one.
+<C-x>   : The opposite effect of command <C-a>
+cit     : ターゲット内部を書き換え (HTMLとXMLのタグ)
+
+###Cheat Part3####Manupulate window
+:vs     : vertical split the vim window
+<C-w> h : Move focus to the right window (you can use "hjkl")
+<C-w> H : move the active window to the right 
+<C-w> > : increse active window width(< is decrese, + -, is for height)
+<C-w> r : Moving windows around(right or under)
+
+###Cheat Part4####Use tab
+:tabnew <filename> :open file in new tab
+gt                 : move next tab
+gT                 : move prev tab
+
+###Cheat Part4####
+gv      : Reselect the previously selected range in visual mode.
+
+###Cheat Part5####Jump Command
+`.       : jump to last edited part
+m{a-z}   : mark the cursl position
+`{a-z}   : jamp to the mark
+<C-o>    : Return curosor movement history
+<C-i>    : Advance the cursor movement history
+:ju      : Display cursor history
+g;       : Return edit hisotry
+g,       : Advance edit history
+:changes : Display edit history
+etcetra => read the book 
+
+###Cheat Part6 ### Record execution command and reexecute
+qq<command>q @q  : Record<command> and reexecute by @q.
+
+###Cheat Patr7 ### install plugins
+:PlugInstall : install plugin added in .vimrc.(実行前に:source $MYVIMRCを実行する）
+:PlugUpdate  : Updata Plugin
+:PlugClean   : Clean Plugin that was removed from .vimrc.
+###Cheat Part** ###Manage Github
+cd ~/dotfiles/.vim/bundle
+git submodule add (plugin url)
+gitcommit -m "(CommitComent)"
+git push
+
+###Point #####
+Vim command is　consists of "motion" and "operator".
+so "dG" is "delete"+"to end of file" : No need to wirte ":
+
+dg     :delete to the rigth of the cursol.
+yap    :Yank Around the Paragraph.(this command is made based on natural language expression )
+
