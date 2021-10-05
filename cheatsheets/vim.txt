@@ -12,10 +12,22 @@ for use github.make directory ~/dotfiles and previous etc files(~/.vimrc is symb
 <Leader>m   :    call :MUR 選択ファイルで"o"押したら（水平分割
                                          "O"おしたら（垂直分割
 :Ex         :    open file manager.(netrwという標準プラグインの機能）
+:change
+
+###Cheat Part1####
+<C-u>   : 半ページ上
+<C-d>   : 半ページ下
+<C-b>   : １ページ上
+<C-f>   : easymotion用にキー変更。なので下行きたい時は<C-d>使う
+zt      : カーソル行が画面上段に来るようになる。
+zz      : カーソル行が画面中段に来るようになる。
+zb      : カーソル行が画面下段に来るようになる。
 
 ###Cheat Part2####
 *       : Search downword a word under the cursol.
 #       : Search upword a word under the cursol.
+g*      : カーソル下の単語を後方検索し順にジャンプ
+g#      : カーソル下の単語を前方検索し順にジャンプ
 ~       : Toggle the case of the character under the cursor.
 <C-a>   : incuement the number to the right of the cursor by one.
 <C-x>   : The opposite effect of command <C-a>
@@ -37,6 +49,7 @@ gT                 : move prev tab
 gv      : Reselect the previously selected range in visual mode.
 
 ###Cheat Part5####Jump Command
+:changes :変更履歴表示
 `.       : jump to last edited part
 m{a-z}   : mark the cursl position
 `{a-z}   : jamp to the mark
@@ -46,7 +59,8 @@ m{a-z}   : mark the cursl position
 g;       : Return edit hisotry
 g,       : Advance edit history
 :changes : Display edit history
-etcetra => read the book 
+<C-]>    : カーソル下の関数定義にジャンプ
+g<C-]>   : カーソル下の関数定義にジャンプ（候補選択）
 
 ###Cheat Part6 ### Record execution command and reexecute
 qq<command>q @q  : Record<command> and reexecute by @q.
