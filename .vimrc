@@ -1,7 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 "#####表示設定##############
 set number "行番号を設定する
-set title "編集中のファイル名を表示する
+"set title "編集中のファイル名を表示する
 set showmatch "『』入力時の対応する括弧を表示
 set shiftwidth=2 "自動シフトの幅"
 set expandtab "タブのスペース展開"
@@ -54,6 +54,10 @@ nnoremap <F5>  :UndotreeToggle<cr>
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "###各種拡張子ファイルが更新されたら自動でctagsファイルを更新
 autocmd BufWritePost *.py,*.js silent! !ctags -R &
+
+"HTMLタグの上のカーソル移動を効率化させる拡張スクリプトを有効化
+source $VIMRUNTIME/macros/matchit.vim
+
 "##############vim-plugでプラグインを管理#############
 call plug#begin()
 Plug 'easymotion/vim-easymotion'
@@ -69,6 +73,7 @@ Plug 'sirver/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
+Plug 'skanehira/vsession'
 call plug#end()
 
 "#########ack.vimを動かさせるために以下の記述が必要だった。
@@ -96,3 +101,13 @@ let g:UltiSnipsEditSplit="vertical"
 
 "######vim-airlineの設定
 let g:airline#extensions#tabline#enabled = 1 " タブラインを表示
+
+"######カレントウィンドウを新規タブで開きなおす
+if v:version >=700
+  nnoremap :tot :call OpenNewTab()
+  function! OpenNewTab()
+    let f = expand("%:p")
+    execute ":q"
+    execute ":tabnew ".f
+  endfunction
+endif

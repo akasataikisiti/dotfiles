@@ -41,9 +41,10 @@ cit     : ターゲット内部を書き換え (HTMLとXMLのタグ)
 <C-w> r : Moving windows around(right or under)
 
 ###Cheat Part4####Use tab
-:tabnew <filename> :open file in new tab
+:tabnew <filename> : open file in new tab
 gt                 : move next tab
 gT                 : move prev tab
+:tot               : open the currently focused file ina new tab(added script in .vimrc)
 
 ###Cheat Part4####
 gv      : Reselect the previously selected range in visual mode.
