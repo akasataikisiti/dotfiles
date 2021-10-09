@@ -39,6 +39,10 @@ map sj <C-w>j
 map sl <C-w>l
 map sr <C-w>r
 map sR <C-w>R
+"水平分割を垂直分割に直す
+map sH <c-w>t<c-w>H
+"垂直分割を水平分割に直す
+map sK <c-w>t<c-w>K
 map <Space> <C-w>w
 nmap s<left> <C-w><
 nmap s<right> <C-w>>
@@ -57,6 +61,13 @@ autocmd BufWritePost *.py,*.js silent! !ctags -R &
 
 "HTMLタグの上のカーソル移動を効率化させる拡張スクリプトを有効化
 source $VIMRUNTIME/macros/matchit.vim
+"Yankした時にWindowsのクリップボードに共有。
+augroup Yank
+  au!
+  autocmd TextYankPost * :call system('clip.exe',@")
+augroup END
+"ステータスラインにgithubの状態を追加
+" set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 "##############vim-plugでプラグインを管理#############
 call plug#begin()
@@ -74,6 +85,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'skanehira/vsession'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "#########ack.vimを動かさせるために以下の記述が必要だった。

@@ -4,7 +4,7 @@ let s:cpo_save=&cpo
 set cpo&vim
 inoremap <silent> <expr> <Plug>(coc-snippets-expand-jump) coc#_insert_key('request', 'snippets-expand-jump', 1)
 inoremap <silent> <expr> <Plug>(coc-snippets-expand) coc#_insert_key('request', 'snippets-expand', 1)
-inoremap <silent> <SNR>31_AutoPairsReturn =AutoPairsReturn()
+inoremap <silent> <SNR>32_AutoPairsReturn =AutoPairsReturn()
 inoremap <silent> <C-L> =UltiSnips#ListSnippets()
 inoremap <silent> <Plug>CocRefresh =coc#_complete()
 inoremap <C-U> u
@@ -48,6 +48,8 @@ nmap s<Down> -
 nmap s<Up> +
 nmap s<Right> >
 nmap s<Left> <
+map sK tK
+map sH tH
 map sR R
 map sr r
 map sl l
@@ -57,6 +59,7 @@ map sh h
 nnoremap x "_x
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
 xnoremap <silent> <Plug>(coc-convert-snippet) :call coc#rpc#notify('doKeymap', ['convert-snippet'])
+nnoremap <SNR>85_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 snoremap <C-R> "_c
@@ -496,7 +499,7 @@ set laststatus=2
 set nomodeline
 set nrformats=bin,hex
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,~/.vim/plugged/vim-fugitive,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
 set scrolloff=5
 set shiftwidth=2
 set showcmd
@@ -515,14 +518,14 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/kotoriotoko/BIN
+cd ~/dotfiles
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-edit ~/dotfiles/cheatsheets/vim.txt
+edit ~/dotfiles/.vimrc
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -560,6 +563,18 @@ inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
 inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
 inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "bW")
+nnoremap <buffer> <silent> [] m':call search('^\s*endf\%[unction]\>', "bW")
+vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
+nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
+vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "W")
+nnoremap <buffer> <silent> ][ m':call search('^\s*endf\%[unction]\>', "W")
+vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
+nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 noremap <buffer> <silent> <M-n> :call AutoPairsJump()
 noremap <buffer> <silent> <M-p> :call AutoPairsToggle()
 inoremap <buffer> <silent>  =AutoPairsDelete()
@@ -593,8 +608,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=fb:-,fb:*,n:>
-setlocal commentstring=
+setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
+setlocal commentstring=\"%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -611,8 +626,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'text'
-setlocal filetype=text
+if &filetype != 'vim'
+setlocal filetype=vim
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -626,7 +641,7 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcq
+setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
@@ -634,11 +649,11 @@ setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal indentexpr=GetVimIndent()
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\,0=\"\\\ 
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
+setlocal iskeyword=@,48-57,_,192-255,#
+setlocal keywordprg=:help
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
@@ -677,8 +692,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'text'
-setlocal syntax=text
+if &syntax != 'vim'
+setlocal syntax=vim
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -687,7 +702,7 @@ setlocal tags=
 setlocal termwinkey=
 setlocal termwinscroll=10000
 setlocal termwinsize=
-setlocal textwidth=0
+setlocal textwidth=78
 setlocal thesaurus=
 setlocal noundofile
 setlocal undolevels=-123456
@@ -699,14 +714,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 47 - ((41 * winheight(0) + 24) / 49)
+let s:l = 42 - ((32 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-47
-normal! 087|
+42
+normal! 024|
 tabnext 1
-badd +0 ~/dotfiles/cheatsheets/vim.txt
+badd +0 ~/dotfiles/.vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -718,6 +733,7 @@ if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
