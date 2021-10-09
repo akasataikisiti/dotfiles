@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/kosuke/dotfiles/.vim'
 let g:netrw_dirhist_5='/mnt/d/githubpages/akasataikisiti.github.io'
 let g:netrw_dirhist_4='/home/kosuke/dotinstall/responsive'
 let g:netrw_dirhist_3='/home/kosuke/dotinstall'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_0='/mnt/d/githubpages/akasataikisiti.github.io'
 let g:netrw_dirhist_9='/mnt/d/githubpages/akasataikisiti.github.io/css'
 let g:netrw_dirhist_8='/mnt/d/githubpages/akasataikisiti.github.io'
 let g:netrw_dirhist_7='/mnt/d/githubpages/akasataikisiti.github.io/css'
-let g:netrw_dirhist_6='/mnt/d/githubpages/akasataikisiti.github.io'
