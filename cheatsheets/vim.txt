@@ -12,7 +12,7 @@ for use github.make directory ~/dotfiles and previous etc files(~/.vimrc is symb
 <Leader>m   :    call :MUR 選択ファイルで"o"押したら（水平分割
                                          "O"おしたら（垂直分割
 :Ex         :    open file manager.(netrwという標準プラグインの機能）
-:change
+:f          :    open fern(file managerr)
 
 ###Cheat Part1####
 <C-u>   : 半ページ上
@@ -44,7 +44,7 @@ cit     : ターゲット内部を書き換え (HTMLとXMLのタグ)
 :tabnew <filename> : open file in new tab
 gt                 : move next tab
 gT                 : move prev tab
-:tot               : open the currently focused file ina new tab(added script in .vimrc)
+:tt               : throw the currently focused file To new tab(added script in .vimrc)
 
 ###Cheat Part4####
 gv      : Reselect the previously selected range in visual mode.
@@ -76,6 +76,11 @@ git submodule add (plugin url)
 gitcommit -m "(CommitComent)"
 git push
 
+###Tips
+1.テキスト中のある単語を順番に確認しながら変更していきたいとき。
+  /変えたい単語をハイライトする(*か/で)
+  /cwをおして変更後単語を入力してEscする。
+  /n.を押して次次に変更を行う。飛ばしたい場合はそのままnで次に行く
 ###Point #####
 Vim command is　consists of "motion" and "operator".
 so "dG" is "delete"+"to end of file" : No need to wirte ":

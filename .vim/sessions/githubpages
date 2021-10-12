@@ -3,9 +3,10 @@ if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <silent> <SNR>29_AutoPairsReturn =AutoPairsReturn()
+inoremap <silent> <SNR>31_AutoPairsReturn =AutoPairsReturn()
 inoremap <silent> <expr> <Plug>(coc-snippets-expand-jump) coc#_insert_key('request', 'snippets-expand-jump', 1)
 inoremap <silent> <expr> <Plug>(coc-snippets-expand) coc#_insert_key('request', 'snippets-expand', 1)
-inoremap <silent> <SNR>31_AutoPairsReturn =AutoPairsReturn()
+inoremap <silent> <SNR>32_AutoPairsReturn =AutoPairsReturn()
 inoremap <silent> <C-L> =UltiSnips#ListSnippets()
 inoremap <silent> <Plug>CocRefresh =coc#_complete()
 inoremap <C-U> u
@@ -49,6 +50,8 @@ nmap s<Down> -
 nmap s<Up> +
 nmap s<Right> >
 nmap s<Left> <
+map sK tK
+map sH tH
 map sR R
 map sr r
 map sl l
@@ -56,6 +59,7 @@ map sj j
 map sk k
 map sh h
 nnoremap x "_x
+nnoremap <SNR>105_: :=v:count ? v:count : ''
 nnoremap <silent> <Plug>(easymotion-activate) :call EasyMotion#activate(0)
 snoremap <silent> <Plug>(easymotion-activate) :call EasyMotion#activate(0)
 nnoremap <silent> <Plug>(easymotion-repeat) :call EasyMotion#Repeat(0)
@@ -232,6 +236,7 @@ nnoremap <silent> <Plug>(easymotion-Tl2) :call EasyMotion#TL(2,0,1)
 snoremap <silent> <Plug>(easymotion-Tl2) :call EasyMotion#TL(2,0,1)
 nnoremap <silent> <Plug>(easymotion-fln) :call EasyMotion#SL(-1,0,0)
 snoremap <silent> <Plug>(easymotion-fln) :call EasyMotion#SL(-1,0,0)
+nnoremap <SNR>123_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
 xnoremap <silent> <Plug>(coc-convert-snippet) :call coc#rpc#notify('doKeymap', ['convert-snippet'])
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
@@ -498,7 +503,7 @@ set nomodeline
 set nrformats=bin,hex
 set operatorfunc=<SNR>17_go
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,~/.vim/plugged/vim-fugitive,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
 set scrolloff=5
 set shiftwidth=2
 set showcmd
@@ -525,7 +530,7 @@ set shortmess=aoO
 argglobal
 %argdel
 $argadd vimmanage.html
-edit css/dot_flexbox.html
+edit css/dot_animation.html
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -588,7 +593,7 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
-setlocal autoindent
+setlocal noautoindent
 setlocal backupcopy=
 setlocal balloonexpr=
 setlocal nobinary
@@ -708,15 +713,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 58 - ((23 * winheight(0) + 24) / 49)
+let s:l = 58 - ((41 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 58
-normal! 053|
+normal! 075|
 wincmd w
 argglobal
-if bufexists("styles/css_dot_flexbox.css") | buffer styles/css_dot_flexbox.css | else | edit styles/css_dot_flexbox.css | endif
+if bufexists("styles/css_dot_animation.css") | buffer styles/css_dot_animation.css | else | edit styles/css_dot_animation.css | endif
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <M-n> :call AutoPairsJump()a
@@ -884,30 +889,32 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 24) / 49)
+let s:l = 23 - ((22 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+23
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 104 + 104) / 209)
 exe 'vert 2resize ' . ((&columns * 104 + 104) / 209)
 tabnext 1
-badd +59 css/dot_flexbox.html
+badd +85 ~/dotfiles/.vimrc
 badd +112 vimmanage.html
+badd +5 css/dot_flexbox.html
 badd +1 styles/css_dot_flexbox.css
 badd +5 css/dot_fund.html
 badd +1 github.html
-badd +8 styles/css_dot_fund.css
-badd +16 styles/common.css
-badd +16 styles/dot_common.css
-badd +1 css/dot_selector.html
-badd +16 styles/css_dot_selector.css
-badd +59 ~/dotfiles/.vimrc
-badd +17 css.html
+badd +2 styles/css_dot_fund.css
+badd +47 styles/common.css
+badd +58 styles/dot_common.css
+badd +71 css/dot_selector.html
+badd +5 styles/css_dot_selector.css
+badd +18 css.html
 badd +9 index.html
 badd +12 styles/button.css
+badd +0 css/dot_animation.html
+badd +1 styles/css_dot_animation.css
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -919,7 +926,6 @@ if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

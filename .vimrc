@@ -48,6 +48,17 @@ nmap s<left> <C-w><
 nmap s<right> <C-w>>
 nmap s<up> <C-w>+
 nmap s<down> <C-w>-
+"カーソル下のファイルを開く
+"縦割り
+nmap sf :vertical wincmd f<CR> <c-w>r
+"新規タブ
+nmap sF <c-w>gf
+"Moving text
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+"vim-airlineタブの移動
+nnoremap :bp :bprevious<CR>
+nnoremap :bn :bnext<CR>
 
 "###Tagbarの呪文をキーマッピング
 nnoremap <Leader>t  :TagbarOpenAutoClose<CR>
@@ -86,6 +97,7 @@ Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'skanehira/vsession'
 Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 "#########ack.vimを動かさせるために以下の記述が必要だった。
@@ -116,10 +128,15 @@ let g:airline#extensions#tabline#enabled = 1 " タブラインを表示
 
 "######カレントウィンドウを新規タブで開きなおす
 if v:version >=700
-  nnoremap :tot :call OpenNewTab()
+  nnoremap :tt :call OpenNewTab()
   function! OpenNewTab()
     let f = expand("%:p")
     execute ":q"
     execute ":tabnew ".f
   endfunction
 endif
+
+"#####vimwikiを正常動作させるのに必要らしい
+set nocompatible
+filetype plugin on
+syntax on
