@@ -72,7 +72,11 @@ map sj j
 map sk k
 map sh h
 nnoremap x "_x
-nnoremap <SNR>103_: :=v:count ? v:count : ''
+vnoremap <silent> <Plug>(VTranslate) :Translate
+nnoremap <silent> <Plug>(Translate) :Translate
+vnoremap <F4> :Translate!
+vnoremap <F3> :Translate
+nnoremap <SNR>106_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
 xnoremap <silent> <Plug>(coc-convert-snippet) :call coc#rpc#notify('doKeymap', ['convert-snippet'])
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
@@ -513,8 +517,9 @@ set langnoremap
 set nolangremap
 set laststatus=2
 set nrformats=bin,hex
+set operatorfunc=<SNR>20_go
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,~/.vim/plugged/vim-fugitive,~/.vim/plugged/vimwiki,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/vim-easymotion,~/.vim/plugged/mru,~/.vim/plugged/vim-commentary,~/.vim/plugged/ack.vim,~/.vim/plugged/tagbar,~/.vim/plugged/undotree,~/.vim/plugged/coc.nvim,~/.vim/plugged/fern.vim,~/.vim/plugged/vim-closetag,~/.vim/plugged/ultisnips,~/.vim/plugged/auto-pairs,~/.vim/plugged/vim-snippets,~/.vim/plugged/vim-airline,~/.vim/plugged/vsession,~/.vim/plugged/vim-fugitive,~/.vim/plugged/vimwiki,~/.vim/plugged/translate.vim,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vim81/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/after
 set scrolloff=5
 set shiftwidth=2
 set showmatch
@@ -528,6 +533,7 @@ set ttimeout
 set ttimeoutlen=100
 set visualbell
 set wildmenu
+set window=51
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -728,12 +734,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 141 - ((23 * winheight(0) + 13) / 27)
+let s:l = 85 - ((40 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-141
-normal! 08|
+85
+normal! 025|
 tabnext 1
 badd +0 ~/dotfiles/.vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0

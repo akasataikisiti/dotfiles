@@ -66,7 +66,7 @@ nnoremap <Leader>T  :echo tagbar#currenttag('[%s]', 'No tags')<CR>
 "###UndoTree呼び出し、閉じる
 nnoremap <F5>  :UndotreeToggle<cr>
 "###相対行表示の切り替え
-nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+" nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "###各種拡張子ファイルが更新されたら自動でctagsファイルを更新
 autocmd BufWritePost *.py,*.js silent! !ctags -R &
 
@@ -79,6 +79,12 @@ augroup Yank
 augroup END
 "ステータスラインにgithubの状態を追加
 " set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+"translatevim用の設定
+let g:translate_source = "en"
+let g:translate_target = "ja"
+let g:translate_winsize = 10
+vnoremap <F3> :Translate
+vnoremap <F4> :Translate!
 
 "##############vim-plugでプラグインを管理#############
 call plug#begin()
@@ -98,6 +104,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'skanehira/vsession'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
+Plug 'skanehira/translate.vim'
 call plug#end()
 
 "#########ack.vimを動かさせるために以下の記述が必要だった。
