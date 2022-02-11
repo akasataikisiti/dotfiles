@@ -85,7 +85,24 @@ let g:translate_target = "ja"
 let g:translate_winsize = 10
 vnoremap <F3> :Translate
 vnoremap <F4> :Translate!
+"
+"タブ、空白、改行の可視化
+set list
+set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
 
+"全角スペースをハイライト表示
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+   
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme       * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+    augroup END
+    call ZenkakuSpace()
+endif
 "##############vim-plugでプラグインを管理#############
 call plug#begin()
 Plug 'easymotion/vim-easymotion'
@@ -105,6 +122,7 @@ Plug 'skanehira/vsession'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'skanehira/translate.vim'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 "#########ack.vimを動かさせるために以下の記述が必要だった。

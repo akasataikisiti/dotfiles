@@ -5,14 +5,14 @@ for use github.make directory ~/dotfiles and previous etc files(~/.vimrc is symb
 :! <linuxコマンド>   : リナックスコマンドを実行
 :r!<linuxコマンド>   : リナックスコマンドを実行、結果をテキスト上に表示
 :term                 : Start-up tarminal-mode in vim."exit" command use to end.
+q:                   :コマンドの履歴を表示、選択してエンターで実行
+                      Ctrl+cで選択し表示するだけもできる
 ###Cheat Part1###
 <Leader> = \
 <Leader>ev  :    open setting file(~/dotfiles/.vimrc)
 <Leader>cv  :    open cheat sheet (~/dotfiles/vim.txt)
 <Leader>m   :    call :MUR 選択ファイルで"o"押したら（水平分割
                                          "O"おしたら（垂直分割
-:Ex         :    open file manager.(netrwという標準プラグインの機能）
-:f          :    open fern(file managerr)
 
 ###Cheat Part1####
 <C-u>   : 半ページ上
@@ -54,11 +54,11 @@ gv      : Reselect the previously selected range in visual mode.
 `.       : jump to last edited part
 m{a-z}   : mark the cursl position
 `{a-z}   : jamp to the mark
-<C-o>    : Return curosor movement history
-<C-i>    : Advance the cursor movement history
+<C-o>    : カーソルジャンプの履歴を戻る
+<C-i>    : カーソルジャンプの履歴を進める
 :ju      : Display cursor history
-g;       : Return edit hisotry
-g,       : Advance edit history
+g;       : Return edit hisotry(変更履歴を遡る)
+g,       : Advance edit history(変更履歴を進める)
 :changes : Display edit history
 <C-]>    : カーソル下の関数定義にジャンプ
 g<C-]>   : カーソル下の関数定義にジャンプ（候補選択）
@@ -75,16 +75,87 @@ cd ~/dotfiles/.vim/bundle
 git submodule add (plugin url)
 gitcommit -m "(CommitComent)"
 git push
+###Cheat Part*** ###Gitコマンド
+\gch :fzfでgitBranchの様子を見たり操作したりできる。
+              <c-b> : 入力されている文字列でブランチを作る
+              <c-d> : 選択されているブランチを削除
+              <c-e> : "選択されているブランチへ"マージ
+###Cheat Part**** ###コンフリクト解消
+fugitive画面で対象ファイルにカーソルを合わせてdvを押下
+:diffget //2  : 左側のコードを反映
+:diffget //3  : 右側のコードを反映
+
+###Cheat Part8 ###vim-surround
+ds[e]      : [e](囲い)を削除     idiom => delete surround
+cs[e][d]   : [e](囲い)を[d](囲い)で囲む idiom => change surround
+ys [mo] [d] : mo(モーション)を使って、[d](囲い)で囲む
+yss [d]     : 一行を[d]で囲む (改行無し)
+S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ）
+###Cheat Part9 ###vim-command
+:set filetype=html   :phpファイルのインデントがおかしい時の対応
+:set filetype?       :filetypeの確認
+###Cheat Part10
+:lcd %:h              :vimのカレントディレクトリを編集中のファイルにあわせる移動させる。
+:Man            :manを表示\Kでリンク先に飛べる。
+:ls             :バッファ一覧表示
+:b<number>      :指定バッファへ移動
+:b#             :前に表示したバッファと現在バッファをトグル
+:tab ba         :バッファーをタブとして開く
+:bufdo tab split:バッファーをタブとして開く
+:tabnew | b[Num|バッファ名] :指定バッファをタブとして開く
+
+###Cheat Part11
+:diffsplit file   :現在のファイルとfileで与えられたファイルを比較
+:vertical diffsplit file   :現在のファイルとfileで与えられたファイルを比較(垂直)
+*コマンドプロンプト上で  nvim -d <file1> <file2>    : file1とfile2の比較をnvimで行う。（vimdiff)
+*垂直分割で開いている２つのファイル比較をおこなうには　　　:windo diffthis
+###Cheat Part12 telescopeのキーマップ
+
+\ff  : 今いる所からfind_files
+\fg  : 今いる所からlive_grep
+\fb  : file_browser()
+\f<space> : バッファ検索
+\fp  : project検索
+\fu  : カーソル下の単語でlive_grep
+\fv  : （選択中）選択単語でlive_grep
+\fz  : 前回fvで検索した分でサイド検索(zレジスターに保存された文字列)
+
+ ##telescope.project拡張機能##
+*normal mode
+d   : delete currently selected project
+r   : rename currently selected project
+c   : create a project
+s   : search inside files within your project
+b   : browser inside files within your project
+w   : change to the selected project's directory without opening it
+R   : find a recently opened file within your project
+f   : find a file within your project (same as <CR>) git管理化のファイルのみ表示される。
+*insert mode
+<c-v> : rename currently selected project
+<c-a> : create a project
+<c-l> : change to the selected project's directory without opening it
+<c-r> : find a recently opened file within your project
+<c-f> : find a file within your project (same as <CR>)
 
 ###Tips
 1.テキスト中のある単語を順番に確認しながら変更していきたいとき。
   /変えたい単語をハイライトする(*か/で)
   /cwをおして変更後単語を入力してEscする。
   /n.を押して次次に変更を行う。飛ばしたい場合はそのままnで次に行く
+2. 補完候補を決定するのは,補完候補を<c-o>,<c-n>で選択して<c-y>で決定する。
 ###Point #####
-Vim command is　consists of "motion" and "operator".
+Vim command is consists of "motion" and "operator".
 so "dG" is "delete"+"to end of file" : No need to wirte ":
 
 dg     :delete to the rigth of the cursol.
 yap    :Yank Around the Paragraph.(this command is made based on natural language expression )
+###emmet###
+"word"<c-y>,  wordを元にhtmlをいい感じにつくってくれる。
 
+###Tips2
+:echo expand('%:p:h')  :表示中のファイルのパスを表示
+:put=execute('com')     :vimの結果表示系コマンドの結果をファイルに書き出す。(comはユーザ定義コマンド一覧表示コマンド)
+###Tips3(snipet)
+:FzfSnippet   : 使用できるSnipetの一覧表示
+<c-j>   : 次の編集地点へ飛ぶ
+<c-k>   : 前の編集地点へ飛ぶ
