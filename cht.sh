@@ -7,7 +7,7 @@ selected=`printf "$languages\n$core_utils" | fzf`
 read -p "query: " query
 
 if printf $languages | grep -qs $selected; then
-  tmux neww bash -c "curl cht.sh/$selected/`echo $query | tr ' ' '+'` & while [ : ]; do sleep 1 done"
+  tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
 else
-  curl cht.sh/$selected~$query
+  tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
 fi
