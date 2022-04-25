@@ -40,16 +40,21 @@ cit     : ターゲット内部を書き換え (HTMLとXMLのタグ)
 <C-w> > : increse active window width(< is decrese, + -, is for height)
 <C-w> r : Moving windows around(right or under)
 
-###Cheat Part4####Use tab
+###Cheat Part4### 畳み込み
+zf : 選択範囲をたたみ込む
+za : 畳み込みを閉じたり開いたり
+zr : 全て開く
+zm : 全て畳み込む
+###Cheat Part5####Use tab
 :tabnew <filename> : open file in new tab
 gt                 : move next tab
 gT                 : move prev tab
 :tt               : throw the currently focused file To new tab(added script in .vimrc)
 
-###Cheat Part4####
+###Cheat Part6####
 gv      : Reselect the previously selected range in visual mode.
 
-###Cheat Part5####Jump Command
+###Cheat Part7####Jump Command
 :changes :変更履歴表示
 `.       : jump to last edited part
 m{a-z}   : mark the cursl position
@@ -62,11 +67,15 @@ g,       : Advance edit history(変更履歴を進める)
 :changes : Display edit history
 <C-]>    : カーソル下の関数定義にジャンプ
 g<C-]>   : カーソル下の関数定義にジャンプ（候補選択）
+gd       : カーソル位置の単語の定義を現在の関数内で探しジャンプ
+gD       : カーソル位置の単語の定義を現在のファイル内で探しジャンプ
+ga       : カーソル位置の文字のASCIIコードを表示する
+},{,),(  : 文章をセンテンス単位で移動する
 
-###Cheat Part6 ### Record execution command and reexecute
+###Cheat Part7 ### Record execution command and reexecute
 qq<command>q @q  : Record<command> and reexecute by @q.
 
-###Cheat Patr7 ### install plugins
+###Cheat Patr8 ### install plugins
 :PlugInstall : install plugin added in .vimrc.(実行前に:source $MYVIMRCを実行する）
 :PlugUpdate  : Updata Plugin
 :PlugClean   : Clean Plugin that was removed from .vimrc.
@@ -85,18 +94,19 @@ fugitive画面で対象ファイルにカーソルを合わせてdvを押下
 :diffget //2  : 左側のコードを反映
 :diffget //3  : 右側のコードを反映
 
-###Cheat Part8 ###vim-surround
+###Cheat Part9 ###vim-surround
 ds[e]      : [e](囲い)を削除     idiom => delete surround
 cs[e][d]   : [e](囲い)を[d](囲い)で囲む idiom => change surround
 ys [mo] [d] : mo(モーション)を使って、[d](囲い)で囲む
 yss [d]     : 一行を[d]で囲む (改行無し)
 S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ）
-###Cheat Part9 ###vim-command
+###Cheat Part10 ###vim-command
 :set filetype=html   :phpファイルのインデントがおかしい時の対応
 :set filetype?       :filetypeの確認
-###Cheat Part10
+###Cheat Part11
 :lcd %:h              :vimのカレントディレクトリを編集中のファイルにあわせる移動させる。
 :Man            :manを表示\Kでリンク先に飛べる。
+###Cheat Pard12 Buffer
 :ls             :バッファ一覧表示
 :b<number>      :指定バッファへ移動
 :b#             :前に表示したバッファと現在バッファをトグル
@@ -104,12 +114,14 @@ S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ�
 :bufdo tab split:バッファーをタブとして開く
 :tabnew | b[Num|バッファ名] :指定バッファをタブとして開く
 
-###Cheat Part11
+###Cheat Part13
+:windo diffthis : 既に開いている二つを比較する
 :diffsplit file   :現在のファイルとfileで与えられたファイルを比較
 :vertical diffsplit file   :現在のファイルとfileで与えられたファイルを比較(垂直)
+:diffoff : diffの解除
 *コマンドプロンプト上で  nvim -d <file1> <file2>    : file1とfile2の比較をnvimで行う。（vimdiff)
 *垂直分割で開いている２つのファイル比較をおこなうには　　　:windo diffthis
-###Cheat Part12 telescopeのキーマップ
+###Cheat Part14 telescopeのキーマップ
 
 \ff  : 今いる所からfind_files
 \fg  : 今いる所からlive_grep
@@ -155,7 +167,33 @@ yap    :Yank Around the Paragraph.(this command is made based on natural languag
 ###Tips2
 :echo expand('%:p:h')  :表示中のファイルのパスを表示
 :put=execute('com')     :vimの結果表示系コマンドの結果をファイルに書き出す。(comはユーザ定義コマンド一覧表示コマンド)
+:set filetype? => filetypeを確認
+:echo &filetype => filetypeを確認(:set filetype?)と同じ
 ###Tips3(snipet)
 :FzfSnippet   : 使用できるSnipetの一覧表示
 <c-j>   : 次の編集地点へ飛ぶ
 <c-k>   : 前の編集地点へ飛ぶ
+
+###Tips4(vimgrep)
+:vim {検索正規表現} % | cw =>で現在のバッファの中に存在する検索対象文字列の件数がわかる。
+  * vimgrepは//でくくると正規表現でくくらないと固定文字列として検索する。
+    ただし固定文字列のやり方だと単語の境界が表現できないので正規表現でパターン作る必要が有る。
+参考(現在のバッファで*の数を数えてquickfixで表示)
+:vim /*/f % |cw
+
+###一時知識###
++ : 次行の非空白文字の先頭
+- : 前行の非空白文字の先頭
+H : 現在表示されている一番上にカーソル移動
+L : 現在表示されている範囲の一番下にカーソル移動
+:g/a/d<enter> aを含む行を削除
+:v/a/d<endter> aを含まない行を削除
+g<c-G>  :文字数、ワード数、バイト数を表示する　注）コントロール＋G
+
+長いHTMLファイルを編集しているときなどにsyntaxhightが効かなくなることが有るそんな時
+:syntax enable とすると解消できる
+
+###プラグイン改変###
+=surroundvim改変=
+インサートモードのCtrl+sに別のキーをマッピングしたかったので
+plugged/vim-surround/plugin/surround.vim 612行目をコメントアウトした
