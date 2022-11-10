@@ -1,10 +1,31 @@
 #! /bin/bash
-se(){ du -a ~/.scripts/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
-es(){ du -a ~/.scripts/* | awk '{print $2}' | fzf | xargs -rI {} bash -ci "{}" ;}
-nf(){ fzf | xargs -r -I % $EDITOR % ;}
 
+# スクリプトフォルダをfzfで検索しエディタで開く
+se(){
+  du -a ~/.scripts/* | \
+  awk '{print $2}' |\
+  fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}" |\
+  xargs -r $EDITOR ;
+}
+
+# スクリプトフォルダをfzfで検索し実行
+es(){
+  du -a ~/.scripts/* | \
+  awk '{print $2}' | \
+  fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}" | \
+  xargs -rI {} bash -ci "{}";
+}
+
+# カレントディレクトリ配下をfzf検索しエディタで開く
+nf(){
+  fzf --preview "bat  --color=always --style=header,grid --line-range :100 {}" | \
+  xargs -r -I % $EDITOR % ;
+}
+
+# Manページをvimで開く
 nam(){  eval "nv -c \"Man $1 | only\"" ; }
-ccs(){ 
+# チートシートを検索
+ccs(){
   if [ $# -eq 1 ]; then
     curl "https://cheat.sh/$1" ;
   elif [ $# -eq 2 ]; then
