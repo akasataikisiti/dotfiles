@@ -91,9 +91,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias cd-k='cd /mnt/c/Users/KS/Desktop'
-alias cd-c='cd /mnt/c'
-alias cd-d='cd /mnt/d/'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -108,52 +105,23 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/kosuke/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/kosuke/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/kosuke/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/kosuke/anaconda3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-# 20210803 add
-#Executing man command with japanese lang.
-alias e_man="LANG=ja_JP.UTF-8 man"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-#nvimのエイリアス
-alias nv='nvim'
-
-#shellshoccerのコマンド群にパスを通す(2021/11/07)
-export PATH="$HOME/work/installer/shellshoccar/bin:$PATH"
-
-#既定editorをneovimにする
-export EDITOR='/usr/bin/nvim'
-
-#CheatSheetにパスを通す(2021/12/24)
-export PATH="$HOME/go/bin:$PATH"
-
-#Docker自動起動の為追記
-service docker status > /dev/null 2>&1
-if [ $? = 1 ]; then
-    sudo service docker start
-fi
-
-#rustの開発環境をインストールした(zoxide使うために)
-. "$HOME/.cargo/env"
-#zoxide使うために必要な記述
-eval "$(zoxide init bash)"
-
-# history にコマンド実行時刻を記録する
-HISTTIMEFORMAT='%Y-%m-%d T%T%z '
-
-# ウィンドウズのクリップを使用する
-alias clip='/mnt/c/WINDOWS/system32/clip.exe'
+# for fzf
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/doc/fzf/examples/completion.bash

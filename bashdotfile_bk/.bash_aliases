@@ -2,7 +2,7 @@
 # source $HOME/.cargo/env
 
 alias cd-k='cd /mnt/c/Users/KS/Desktop'
-lias cd-c='cd /mnt/c'
+alias cd-c='cd /mnt/c'
 alias cd-d='cd /mnt/d/'
 
 
@@ -16,3 +16,9 @@ alias nv='nvim'
 # ウィンドウズのクリップを使用する
 alias clip='/mnt/c/WINDOWS/system32/clip.exe'
 
+# haskell 環境
+alias ghci='stack ghci'
+
+# LearnLinuxTV
+alias i='sudo apt install '
+alias wtr='curl wttr.in/Katsushika'
