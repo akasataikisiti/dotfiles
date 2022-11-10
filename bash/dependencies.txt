@@ -1,0 +1,8 @@
+/.bash_profile
+    |-.bashrc
+    |    |
+    |    |- .bash_aliases
+    |    └.for_others_from_bashrc
+    |
+    |- aliasrc
+    └-.for_others_from_bash_profile

@@ -1,0 +1,13 @@
+#! /bin/bash
+se(){ du -a ~/.scripts/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+es(){ du -a ~/.scripts/* | awk '{print $2}' | fzf | xargs -rI {} bash -ci "{}" ;}
+nf(){ fzf | xargs -r -I % $EDITOR % ;}
+
+nam(){  eval "nv -c \"Man $1 | only\"" ; }
+ccs(){ 
+  if [ $# -eq 1 ]; then
+    curl "https://cheat.sh/$1" ;
+  elif [ $# -eq 2 ]; then
+    curl "https://cheat.sh/$1/$2" ;
+  fi
+}
