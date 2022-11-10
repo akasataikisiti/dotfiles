@@ -7,6 +7,9 @@ for use github.make directory ~/dotfiles and previous etc files(~/.vimrc is symb
 :term                 : Start-up tarminal-mode in vim."exit" command use to end.
 q:                   :コマンドの履歴を表示、選択してエンターで実行
                       Ctrl+cで選択し表示するだけもできる
+:! %                 :現在のファイル名が渡される
+:!chmod a+x %        :現在のファイルにa+xの権限を付与する
+
 ###Cheat Part1###
 <Leader> = \
 <Leader>ev  :    open setting file(~/dotfiles/.vimrc)
@@ -40,11 +43,17 @@ cit     : ターゲット内部を書き換え (HTMLとXMLのタグ)
 <C-w> > : increse active window width(< is decrese, + -, is for height)
 <C-w> r : Moving windows around(right or under)
 
-###Cheat Part4### 畳み込み
+###Cheat Part4### 畳み込み(folding)
 zf : 選択範囲をたたみ込む
+zf/<C-r><C-w> ENTER  : htmlタグの範囲で畳み込みたいときとかに使える
+zo : 展開（一段階）
+zO : 展開（すべて）
 za : 畳み込みを閉じたり開いたり
 zr : 全て開く
 zm : 全て畳み込む
+:mkview    : 現在のフォールディング状態を保存
+:loadview  : 保存したフォールディング状態を読み込む
+
 ###Cheat Part5####Use tab
 :tabnew <filename> : open file in new tab
 gt                 : move next tab
@@ -79,6 +88,7 @@ qq<command>q @q  : Record<command> and reexecute by @q.
 :PlugInstall : install plugin added in .vimrc.(実行前に:source $MYVIMRCを実行する）
 :PlugUpdate  : Updata Plugin
 :PlugClean   : Clean Plugin that was removed from .vimrc.
+
 ###Cheat Part** ###Manage Github
 cd ~/dotfiles/.vim/bundle
 git submodule add (plugin url)
@@ -100,6 +110,7 @@ cs[e][d]   : [e](囲い)を[d](囲い)で囲む idiom => change surround
 ys [mo] [d] : mo(モーション)を使って、[d](囲い)で囲む
 yss [d]     : 一行を[d]で囲む (改行無し)
 S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ）
+ysiw)       : 単語を()で囲う
 ###Cheat Part10 ###vim-command
 :set filetype=html   :phpファイルのインデントがおかしい時の対応
 :set filetype?       :filetypeの確認
@@ -113,6 +124,7 @@ S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ�
 :tab ba         :バッファーをタブとして開く
 :bufdo tab split:バッファーをタブとして開く
 :tabnew | b[Num|バッファ名] :指定バッファをタブとして開く
+<c-^>           :現在バッファと代替バッファを入れ替える
 
 ###Cheat Part13
 :windo diffthis : 既に開いている二つを比較する
@@ -121,8 +133,8 @@ S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ�
 :diffoff : diffの解除
 *コマンドプロンプト上で  nvim -d <file1> <file2>    : file1とfile2の比較をnvimで行う。（vimdiff)
 *垂直分割で開いている２つのファイル比較をおこなうには　　　:windo diffthis
-###Cheat Part14 telescopeのキーマップ
 
+###Cheat Part14 telescopeのキーマップ
 \ff  : 今いる所からfind_files
 \fg  : 今いる所からlive_grep
 \fb  : file_browser()
@@ -131,6 +143,10 @@ S [d]       : [d](囲い)で囲む（注：ヴィジュアルモード時のみ�
 \fu  : カーソル下の単語でlive_grep
 \fv  : （選択中）選択単語でlive_grep
 \fz  : 前回fvで検索した分でサイド検索(zレジスターに保存された文字列)
+
+###Cheat Part15 一括で実行
+:'<,'>normal .  => 選択範囲でコンマコマンドを実行できる
+:%normal A;   => ページ全体の行末に;を入力
 
  ##telescope.project拡張機能##
 *normal mode
@@ -151,9 +167,9 @@ f   : find a file within your project (same as <CR>) git管理化のファイル
 
 ###Tips
 1.テキスト中のある単語を順番に確認しながら変更していきたいとき。
-  /変えたい単語をハイライトする(*か/で)
-  /cwをおして変更後単語を入力してEscする。
-  /n.を押して次次に変更を行う。飛ばしたい場合はそのままnで次に行く
+  変えたい単語をハイライトする(*か/で)
+  ciwをおして変更後単語を入力してEscする。
+  n.を押して次次に変更を行う。飛ばしたい場合はそのままnで次に行く
 2. 補完候補を決定するのは,補完候補を<c-o>,<c-n>で選択して<c-y>で決定する。
 ###Point #####
 Vim command is consists of "motion" and "operator".
@@ -167,8 +183,12 @@ yap    :Yank Around the Paragraph.(this command is made based on natural languag
 ###Tips2
 :echo expand('%:p:h')  :表示中のファイルのパスを表示
 :put=execute('com')     :vimの結果表示系コマンドの結果をファイルに書き出す。(comはユーザ定義コマンド一覧表示コマンド)
+:put =execute(':lua print(vim.lsp.get_log_path())') :応用 luaで実行した結果を挿入
 :set filetype? => filetypeを確認
 :echo &filetype => filetypeを確認(:set filetype?)と同じ
+:h ex-cmd-index   => exコマンドの一覧表示
+@:  => 直前のExコマンドを実行
+
 ###Tips3(snipet)
 :FzfSnippet   : 使用できるSnipetの一覧表示
 <c-j>   : 次の編集地点へ飛ぶ
@@ -180,6 +200,9 @@ yap    :Yank Around the Paragraph.(this command is made based on natural languag
     ただし固定文字列のやり方だと単語の境界が表現できないので正規表現でパターン作る必要が有る。
 参考(現在のバッファで*の数を数えてquickfixで表示)
 :vim /*/f % |cw
+###Tips4(エラー対応)
+:messages   => 発生したエラーを見る事が出来る。
+tagbarの実行時にエラーが一瞬発生した。それを見る時に使えた。
 
 ###一時知識###
 + : 次行の非空白文字の先頭
@@ -188,7 +211,7 @@ H : 現在表示されている一番上にカーソル移動
 L : 現在表示されている範囲の一番下にカーソル移動
 :g/a/d<enter> aを含む行を削除
 :v/a/d<endter> aを含まない行を削除
-g<c-G>  :文字数、ワード数、バイト数を表示する　注）コントロール＋G
+g<c-G>  :文字数、ワード数、バイト数,行数を表示する　注）コントロール＋G
 
 長いHTMLファイルを編集しているときなどにsyntaxhightが効かなくなることが有るそんな時
 :syntax enable とすると解消できる
@@ -197,3 +220,9 @@ g<c-G>  :文字数、ワード数、バイト数を表示する　注）コン�
 =surroundvim改変=
 インサートモードのCtrl+sに別のキーをマッピングしたかったので
 plugged/vim-surround/plugin/surround.vim 612行目をコメントアウトした
+
+= coc-nvimの特殊コマンド =
+call CocAction('jumpDefinition', 'drop')   :定義元にジャンプ
+call CocAction('format')  :formatを行う
+CocCommand workspace.showOutput  :色々な拡張機能とかの状態を見る
+CocDiagnostic  : 現在のファイルで出力されているエラーやinfoの一覧を出せる

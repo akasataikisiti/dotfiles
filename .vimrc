@@ -20,6 +20,14 @@ set vb t_vb=  "ビープ音ならないようにする"
 
 "##########wildmenuを有効にする（同じ階層のファイルを開く時tab選択ができるようになる。）
 set wildmenu
+
+" tigでvimdiffを使うのでその時綺麗に見えるように
+" vimdiffの色設定
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
+
 "##########本読んで追加#########
 nnoremap <Leader>ev :e ~/dotfiles/.vimrc
 nnoremap <Leader>cv :e ~/dotfiles/cheatsheets/vim.txt
@@ -59,6 +67,15 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 "vim-airlineタブの移動
 nnoremap :bp :bprevious<CR>
 nnoremap :bn :bnext<CR>
+"tabが一つだけだったら新しいタブを開く
+nnoremap gt :call TabnewOrGoNext()<CR>
+function! TabnewOrGoNext()
+  if 1 == tabpagenr('$')
+    execute ":tabedit"
+  else
+    execute ":tabnext"
+  endif
+endfunction
 
 "###Tagbarの呪文をキーマッピング
 nnoremap <Leader>t  :TagbarOpenAutoClose<CR>
@@ -153,7 +170,7 @@ let g:airline#extensions#tabline#enabled = 1 " タブラインを表示
 
 "######カレントウィンドウを新規タブで開きなおす
 if v:version >=700
-  nnoremap :tt :call OpenNewTab()
+  nnoremap :tt :call OpenNewTab()<CR>
   function! OpenNewTab()
     let f = expand("%:p")
     execute ":q"
