@@ -1,3 +1,7 @@
+################################
+#  bashコンフィグの初期化処理  #
+################################
+
 #!/usr/bin/env bash
 
 
@@ -30,3 +34,5 @@ ln -s "$BASH_DIR/.for_others_from_bashrc" "$HOME/.for_others_from_bashrc"
 ln -s "$BASH_DIR/.for_others_from_bash_profile" "$HOME/.for_others_from_bash_profile"
 ln -s "$BASH_DIR/aliasrc" "$HOME/aliasrc"
 
+# installer2を実行
+.installer2
