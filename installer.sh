@@ -22,7 +22,7 @@ if [ -f ${HOME}/aliasrc ]; then
   mv "$HOME/aliasrc" "$BASH_DIR_BK/aliasrc"
 fi
 
-echo "$BASH_DIR_BK/text_for_adding_to_bashrc" >> "$HOME/.bashrc"
+echo "$BASH_DIR/text_for_adding_to_bashrc" >> "$HOME/.bashrc"
 # /dotofiles/各種bashコンフィグへのシンボリックリンクを作成
 ln -s "$BASH_DIR/.bash_profile" "$HOME/.bash_profile"
 ln -s "$BASH_DIR/.bash_aliases" "$HOME/.bash_aliases"
