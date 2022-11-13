@@ -4,8 +4,8 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # bashコンフィグのバックアップをとる
-BASH_DIR=$SCRIPT_DIR/bash/
-BASH_DIR_BK=$SCRIPT_DIR/bashdotfile_bk/
+BASH_DIR=$SCRIPT_DIR/bash
+BASH_DIR_BK=$SCRIPT_DIR/bashdotfile_bk
 
 if [ -f ${HOME}/.bashrc ]; then
   mv "$HOME/.bashrc" "$BASH_DIR_BK/.bashrc"
