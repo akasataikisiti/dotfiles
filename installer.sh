@@ -35,4 +35,4 @@ ln -s "$BASH_DIR/.for_others_from_bash_profile" "$HOME/.for_others_from_bash_pro
 ln -s "$BASH_DIR/aliasrc" "$HOME/aliasrc"
 
 # installer2を実行
-.installer2
+. installer2.sh
