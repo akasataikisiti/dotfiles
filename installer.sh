@@ -20,8 +20,13 @@ if [ -f ${HOME}/aliasrc ]; then
   mv "$HOME/aliasrc" "$BASH_DIR_BK/aliasrc"
 fi
 
-# /dotofiles/bashコンフィグへのシンボリックリンクを作成
+# /dotofiles/各種bashコンフィグへのシンボリックリンクを作成
 ln -s "$BASH_DIR/.bashrc" "$HOME/.bashrc"
 ln -s "$BASH_DIR/.bash_profile" "$HOME/.bash_profile"
 ln -s "$BASH_DIR/.bash_aliases" "$HOME/.bash_aliases"
+ln -s "$BASH_DIR/.for_others_from_bashrc" "$HOME/.for_others_from_bashrc"
+ln -s "$BASH_DIR/.for_others_from_bash_profile" "$HOME/.for_others_from_bash_profile"
 ln -s "$BASH_DIR/aliasrc" "$HOME/aliasrc"
+
+# 権限与えないと使えない
+chmod +x  "$BASH_DIR/aliasrc"
