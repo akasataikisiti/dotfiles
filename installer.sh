@@ -7,8 +7,10 @@ SCRIPT_DIR=$(cd $(dirname $0); pwd)
 BASH_DIR=$SCRIPT_DIR/bash
 BASH_DIR_BK=$SCRIPT_DIR/bashdotfile_bk
 
+# バックアップ作成
+# bashrcのみ元ファイルに設定追加して使用するようにする
 if [ -f ${HOME}/.bashrc ]; then
-  mv "$HOME/.bashrc" "$BASH_DIR_BK/.bashrc"
+  cp "$HOME/.bashrc" "$BASH_DIR_BK/.bashrc"
 fi
 if [ -f ${HOME}/.bash_profile ]; then
   mv "$HOME/.bash_profile" "$BASH_DIR_BK/.bash_profile"
@@ -20,8 +22,8 @@ if [ -f ${HOME}/aliasrc ]; then
   mv "$HOME/aliasrc" "$BASH_DIR_BK/aliasrc"
 fi
 
+echo "$BASH_DIR_BK/text_for_adding_to_bashrc" >> "$HOME/.bashrc"
 # /dotofiles/各種bashコンフィグへのシンボリックリンクを作成
-ln -s "$BASH_DIR/.bashrc" "$HOME/.bashrc"
 ln -s "$BASH_DIR/.bash_profile" "$HOME/.bash_profile"
 ln -s "$BASH_DIR/.bash_aliases" "$HOME/.bash_aliases"
 ln -s "$BASH_DIR/.for_others_from_bashrc" "$HOME/.for_others_from_bashrc"

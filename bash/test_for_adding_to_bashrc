@@ -1,0 +1,8 @@
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.for_others_from_bashrc ]; then
+    . ~/.for_others_from_bashrc
+fi
+
