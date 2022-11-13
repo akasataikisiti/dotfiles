@@ -16,8 +16,12 @@ fi
 if [ -f ${HOME}/.bash_aliases ]; then
   mv "$HOME/.bash_aliases" "$BASH_DIR_BK/.bash_aliases"
 fi
+if [ -f ${HOME}/aliasrc ]; then
+  mv "$HOME/aliasrc" "$BASH_DIR_BK/aliasrc"
+fi
 
 # /dotofiles/bashコンフィグへのシンボリックリンクを作成
 ln -s "$BASH_DIR/.bashrc" "$HOME/.bashrc"
 ln -s "$BASH_DIR/.bash_profile" "$HOME/.bash_profile"
 ln -s "$BASH_DIR/.bash_aliases" "$HOME/.bash_aliases"
+ln -s "$BASH_DIR/aliasrc" "$HOME/aliasrc"
