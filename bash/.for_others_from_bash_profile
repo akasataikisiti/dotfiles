@@ -1,9 +1,9 @@
 #! /bin/bash
 
 
-#rustの開発環境をインストールした(zoxide使うために)
+# rustの開発環境をインストールした(zoxide使うために)
 . "$HOME/.cargo/env"
-#zoxide使うために必要な記述
+# zoxide使うために必要な記述
 eval "$(zoxide init bash)"
 
 # NEOVIM

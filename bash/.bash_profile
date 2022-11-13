@@ -26,7 +26,9 @@ export PATH="$HOME/go/bin:$PATH"
 HISTTIMEFORMAT='%Y-%m-%d T%T%z '
 
 # 2022/04/25追加( ~/.scriptとその配下のディレクトリをパスに追加 )
-export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+if [ -d "$HOME/.scripts/" ]; then
+  export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+fi
 
 if [ -f ~/aliasrc ]; then
     . ~/aliasrc

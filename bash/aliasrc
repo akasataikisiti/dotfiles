@@ -26,3 +26,15 @@ ccs(){
     curl "https://cheat.sh/$1/$2" ;
   fi
 }
+# fzfを使って上の階層に移動
+cdu(){
+  curent=$(pwd)
+  dirnames=(${curent//// })
+  dist='/'
+  distary=('/')
+  cd $( (for dirname in "${dirnames[@]}";do
+  dist="${dist}${dirname}"
+  echo "${dist}"
+  dist="${dist}/"
+  done) | fzf )
+}
