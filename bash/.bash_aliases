@@ -1,3 +1,4 @@
+echo "read .bash_aliases"
 # なんかあった一応コメントアウトして残しておく(cargo)
 # source $HOME/.cargo/env
 

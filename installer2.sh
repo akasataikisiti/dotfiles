@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 
+# その他ツール用コンフィグファイルのバックアップを取る
+# シンボリックリンクで移行してきた物に差し替える
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 OTHER_CONF_DIR=$SCRIPT_DIR/other_config

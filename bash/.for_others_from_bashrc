@@ -1,4 +1,5 @@
 #! /bin/bash
+echo "read .for_others_from_bashrc"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

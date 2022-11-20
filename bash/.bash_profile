@@ -1,4 +1,5 @@
 source ~/.bashrc
+echo "read .bash_profile"
 export PATH="$PATH:~/bin"
 
 # このセクション2022/11/01 bashrcからもってきた

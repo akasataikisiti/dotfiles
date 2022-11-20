@@ -1,4 +1,5 @@
 #! /bin/bash
+echo "read .for_others_from_bash_profile"
 
 
 # rustの開発環境をインストールした(zoxide使うために)
