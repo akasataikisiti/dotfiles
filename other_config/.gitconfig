@@ -1,6 +1,7 @@
-[user]
-	name = kosuke
-	email = akaza586933@gmail.com
+[include]
+  # ユーザ情報
+  path = .gitconfig.user
+
 [color]
 	ui = true
 [core]

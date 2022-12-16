@@ -3,7 +3,11 @@
 # スクリプトフォルダをfzfで検索しエディタで開く
 se(){
   du -a ~/.scripts/* | \
-  awk '{print $2}' | \
+  awk '{
+    if ($2 !~ /(stashdir|testdir|tags)/){
+      print $2
+    }
+  }' | \
   fzf | \
   xargs -r $EDITOR ;
 }
@@ -11,7 +15,11 @@ se(){
 # スクリプトフォルダをfzfで検索し実行
 es(){
   du -a ~/.scripts/* | \
-  awk '{print $2}' | \
+  awk '{
+    if ($2 !~ /(stashdir|testdir|tags)/){
+      print $2
+    }
+  }' | \
   fzf | \
   xargs -rI {} bash -ci "{}";
 }
@@ -43,4 +51,12 @@ cdu(){
   echo "${dist}"
   dist="${dist}/"
   done) | fzf )
+}
+
+wtr(){
+  if [ $# -eq 0 ]; then
+    curl wttr.in/Katsushika
+  else
+    curl wttr.in/$1
+  fi
 }

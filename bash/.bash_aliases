@@ -9,7 +9,7 @@ alias cd-d='cd /mnt/d/'
 
 # 20210803 add
 #Executing man command with japanese lang.
-alias e_man="LANG=ja_JP.UTF-8 man"
+alias e_man="man -L en_US.utf8"
 
 #nvimのエイリアス
 alias nv='nvim'
@@ -22,4 +22,12 @@ alias ghci='stack ghci'
 
 # LearnLinuxTV
 alias i='sudo apt install '
-alias wtr='curl wttr.in/Katsushika'
+
+# explorerを開く（wsl2用）
+alias ee='explorer.exe .'
+
+# pushd,popdを使いやすく
+
+# pet実行を簡単に
+alias pe='pet exec'
+alias pl='pet list'
