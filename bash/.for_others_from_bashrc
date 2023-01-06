@@ -16,6 +16,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# for fzf (homebruewでインストールしたら不要っぽい)
-# source /usr/share/doc/fzf/examples/key-bindings.bash
-# source /usr/share/doc/fzf/examples/completion.bash

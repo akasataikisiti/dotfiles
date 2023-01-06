@@ -1,9 +1,5 @@
-# installerより追加
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
+# これを初期状態のbashrcに追記
+# あと余計な行は削除する
 if [ -f ~/.for_others_from_bashrc ]; then
     . ~/.for_others_from_bashrc
 fi
-

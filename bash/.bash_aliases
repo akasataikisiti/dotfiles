@@ -1,10 +1,25 @@
 echo "read .bash_aliases"
-# なんかあった一応コメントアウトして残しておく(cargo)
-# source $HOME/.cargo/env
+
+# ubuntuのデフォルトのbashrcにある記載自分でこっちに移動してきた
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 
 alias cd-k='cd /mnt/c/Users/KS/Desktop'
 alias cd-c='cd /mnt/c'
 alias cd-d='cd /mnt/d/'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 
 # 20210803 add

@@ -1,4 +1,3 @@
-source ~/.bashrc
 echo "read .bash_profile"
 export PATH="$PATH:~/bin"
 
@@ -14,17 +13,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# なんかあった一応コメントアウトして残しておく(cargo)
-# . "$HOME/.cargo/env"
-
 # 既定editorをneovimにする
-export EDITOR='/usr/bin/nvim'
+# export EDITOR='/usr/bin/nvim'
+export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
 
 #CheatSheetにパスを通す(2021/12/24)
 export PATH="$HOME/go/bin:$PATH"
 
 # history にコマンド実行時刻を記録する
 HISTTIMEFORMAT='%Y-%m-%d T%T%z '
+
+
+# inputrc追加
+if [ -f ~/.inputrc ]; then
+    . ~/.inputrc
+fi
+
+# aliace追加
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # 2022/04/25追加( ~/.scriptとその配下のディレクトリをパスに追加 )
 if [ -d "$HOME/.scripts/" ]; then
