@@ -7,10 +7,8 @@ if [ -f ~/.from_bashrc ]; then
     . ~/.from_bashrc
 fi
 
-#bashをvimモードにする
-set -o vi
 
-# 既定editorをneovimにする
+# 既定editorをneovimにする(brewインストールとaptインストールでパスを分ける)
 # export EDITOR='/usr/bin/nvim'
 export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
 
