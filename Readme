@@ -1,0 +1,15 @@
+== 使い方 ==
+まずinstall.shを実行する
+
+## 1 .bashrcファイルを編集する
+
+case $- inのブロックより後を切り取る
+この切り取った内容を.from_bashrcに張り付ける
+
+case $- in のブロックよりのうしろに
+
+  if [ -f ~/.bash_profile ]; then
+      . ~/.bash_profile
+  fi
+
+を追記する

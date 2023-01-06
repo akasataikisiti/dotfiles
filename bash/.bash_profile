@@ -1,24 +1,18 @@
 echo "read .bash_profile"
 export PATH="$PATH:~/bin"
 
-# このセクション2022/11/01 bashrcからもってきた
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+
+# bashrcにあったものをここで読み込むようにする
+if [ -f ~/.from_bashrc ]; then
+    . ~/.from_bashrc
 fi
+
+#bashをvimモードにする
+set -o vi
 
 # 既定editorをneovimにする
 # export EDITOR='/usr/bin/nvim'
 export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
-
-#CheatSheetにパスを通す(2021/12/24)
-export PATH="$HOME/go/bin:$PATH"
 
 # history にコマンド実行時刻を記録する
 HISTTIMEFORMAT='%Y-%m-%d T%T%z '
