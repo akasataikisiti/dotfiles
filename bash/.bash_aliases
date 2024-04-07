@@ -1,8 +1,9 @@
 echo "read .bash_aliases"
 
-alias cd-k='cd /mnt/c/Users/KS/Desktop'
-alias cd-c='cd /mnt/c'
-alias cd-d='cd /mnt/d/'
+# (WSL用)マシーンによって変わる
+# alias cd-k='cd /mnt/c/Users/KS/Desktop'
+# alias cd-c='cd /mnt/c'
+# alias cd-d='cd /mnt/d/'
 
 
 # 20210803 add
@@ -29,3 +30,7 @@ alias ee='explorer.exe .'
 # pet実行を簡単に
 alias pe='pet exec'
 alias pl='pet list'
+
+# cd directory
+alias cdd='cd ..'
+alias cddd='cd ../..'

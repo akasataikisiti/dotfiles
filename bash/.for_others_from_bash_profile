@@ -1,5 +1,7 @@
 echo "read .for_others_from_bash_profile"
 
+# linuxbrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # zoxide使うために必要な記述
 eval "$(zoxide init bash)"
@@ -14,21 +16,44 @@ export FZF_DEFAULT_OPTS='--preview "bat  --color=always --style=header,grid --li
 source ~/dotfiles/other_config/completion.bash
 source ~/dotfiles/other_config/key-bindings.bash
 
-# Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "$HOME/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$HOME/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
+
+eval `ssh-agent`
+
+# mise
+eval "$(/home/linuxbrew/.linuxbrew/bin/mise activate bash)"
+
+# lazyvim
+NVIM_LAZY=nvim-lazy
+export NVIM_LAZY
+alias nz='NVIM_APPNAME=$NVIM_LAZY nvim'
+
+# pckr vim
+NVIM_PAQ=nvim-paq
+export NVIM_PAQ
+alias np='NVIM_APPNAME=$NVIM_PAQ nvim'
+#
+# kickstart vim
+NVIM_KICK=nvim-kick
+export NVIM_KICK
+alias nk='NVIM_APPNAME=$NVIM_KICK nvim'
+
+# paq vim
+NVIM_PAQ2=nvim-paq2
+export NVIM_PAQ2
+alias npp='NVIM_APPNAME=$NVIM_PAQ2 nvim'
