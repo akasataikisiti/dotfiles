@@ -28,7 +28,7 @@ es(){
 # カレントディレクトリ配下をfzf検索しエディタで開く
 nf(){
   fzf | \
-  xargs -r -I % $EDITOR % ;
+  xargs -rI {} $EDITOR "{}" ;
 }
 
 # Manページをvimで開く
@@ -42,7 +42,7 @@ ccs(){
   fi
 }
 # fzfを使って上の階層に移動
-cdu(){
+cu(){
   curent=$(pwd)
   dirnames=(${curent//// })
   dist='/'
