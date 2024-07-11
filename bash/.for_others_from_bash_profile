@@ -16,7 +16,8 @@ export FZF_DEFAULT_OPTS='--preview "bat  --color=always --style=header,grid --li
 source ~/dotfiles/other_config/completion.bash
 source ~/dotfiles/other_config/key-bindings.bash
 
-
+# ChatGPTの設定読み込み
+source ~/.openai_key.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -32,6 +33,8 @@ source ~/dotfiles/other_config/key-bindings.bash
 # fi
 # unset __conda_setup
 # <<< conda initialize <<<
+
+
 
 eval `ssh-agent`
 
@@ -61,3 +64,13 @@ alias npp='NVIM_APPNAME=$NVIM_PAQ2 nvim'
 
 # github copilot cli
 eval "$(gh copilot alias -- bash)"
+# basic nvim    (normalのnvimはbetter-nvimにとられた)
+NVIM_MINE=nvim_mine
+export NVIM_MINE
+alias nv='NVIM_APPNAME=$NVIM_MINE nvim'
+
+# vscode_nvim
+NVIM_VSCODE=vscode_nvim
+export NVIM_VSCODE
+alias vsn='NVIM_APPNAME=$NVIM_VSCODE nvim'
+

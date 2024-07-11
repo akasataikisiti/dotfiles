@@ -11,7 +11,7 @@ echo "read .bash_aliases"
 alias e_man="man -L en_US.utf8"
 
 #nvimのエイリアス
-alias nv='nvim'
+alias nb='nvim'
 
 # ウィンドウズのクリップを使用する
 alias clip='/mnt/c/WINDOWS/system32/clip.exe'
@@ -34,3 +34,9 @@ alias pl='pet list'
 # cd directory
 alias cdd='cd ..'
 alias cddd='cd ../..'
+
+
+alias gs='gh copilot suggest'
+alias ge='gh copilot explain'
+
+

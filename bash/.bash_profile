@@ -10,6 +10,7 @@ fi
 
 # 既定editorをneovimにする(brewインストールとaptインストールでパスを分ける)
 # export EDITOR='/usr/bin/nvim'
+export EDITOR=$(which nvim)
 
 # history にコマンド実行時刻を記録する
 HISTTIMEFORMAT='%Y-%m-%d T%T%z '
