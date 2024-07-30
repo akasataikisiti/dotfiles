@@ -6,6 +6,7 @@
 	ui = true
 [core]
 	editor = nvim
+	quotepath = false
 [alias]
 	co = checkout
 	st = status
@@ -37,3 +38,9 @@
 	ff = false
 [pull]
 	rebase = merges
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
