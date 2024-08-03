@@ -41,18 +41,7 @@ ccs(){
     curl "https://cheat.sh/$1/$2" ;
   fi
 }
-# fzfを使って上の階層に移動
-cu(){
-  curent=$(pwd)
-  dirnames=(${curent//// })
-  dist='/'
-  distary=('/')
-  cd $( (for dirname in "${dirnames[@]}";do
-  dist="${dist}${dirname}"
-  echo "${dist}"
-  dist="${dist}/"
-  done) | fzf )
-}
+
 
 wtr(){
   if [ $# -eq 0 ]; then
@@ -61,3 +50,48 @@ wtr(){
     curl wttr.in/$1
   fi
 }
+
+# fzfを使って上の階層に移動
+cu(){
+  local cur_dir=$(pwd)
+  local home_dir="$HOME"
+
+  # 保存された元のFZF_DEFAULT_OPTSをバックアップ
+  local old_fzf_default_opts="$FZF_DEFAULT_OPTS"
+  
+  # Check if the current directory is inside a git repository
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    local root_dir=$(git rev-parse --show-toplevel)
+  elif [[ $cur_dir == $home_dir* ]]; then
+    local root_dir=$home_dir
+  else
+    local root_dir="/"
+  fi
+
+  local relative_dir=${cur_dir#$root_dir}
+  IFS='/' read -r -a dirs <<< "$relative_dir"
+  local dist="$root_dir"
+
+  local options=("$root_dir")
+  for dir in "${dirs[@]}"; do
+    if [ -n "$dir" ]; then
+      dist="${dist%/}/$dir"
+      options+=("$dist")
+    fi
+  done
+
+  # Set FZF options for preview
+  export FZF_DEFAULT_OPTS='--preview "ls -al --color=auto {}"'
+
+  local selected=$(printf "%s\n" "${options[@]}" | fzf)
+
+  if [ -n "$selected" ]; then
+    cd "$selected"
+  else
+    echo "No selection made."
+  fi
+
+  # 元のFZF_DEFAULT_OPTSを復元
+  export FZF_DEFAULT_OPTS="$old_fzf_default_opts"
+}
+

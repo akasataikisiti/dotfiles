@@ -10,6 +10,8 @@ echo "read .bash_aliases"
 #Executing man command with japanese lang.
 alias e_man="man -L en_US.utf8"
 
+eval $(thefuck --alias tf)
+
 #nvimのエイリアス
 alias nb='nvim'
 

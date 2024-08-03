@@ -39,12 +39,19 @@ source ~/.openai_key.sh
 eval `ssh-agent`
 
 # mise
+# あとで上のほうに切り替える (直接指定をやめる)
+# eval "$($(which mise) activate bash)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/mise activate bash)"
 
 # lazyvim
 NVIM_LAZY=nvim-lazy
 export NVIM_LAZY
 alias nz='NVIM_APPNAME=$NVIM_LAZY nvim'
+
+# lazyvim mine
+NVIM_LAZY_MINE=nvim-lazy-mine
+export NVIM_LAZY_MINE
+alias nzm='NVIM_APPNAME=$NVIM_LAZY_MINE nvim'
 
 # pckr vim
 NVIM_PAQ=nvim-paq
