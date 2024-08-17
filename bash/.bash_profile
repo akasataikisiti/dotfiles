@@ -38,3 +38,5 @@ fi
 if [ -f ~/.for_others_from_bash_profile ]; then
     . ~/.for_others_from_bash_profile
 fi
+export PATH="/home/linuxbrew/.linuxbrew/opt/mysql-client/bin:$PATH"
+. "$HOME/.cargo/env"
