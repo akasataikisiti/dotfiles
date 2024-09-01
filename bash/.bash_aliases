@@ -38,8 +38,8 @@ alias cdd='cd ..'
 alias cddd='cd ../..'
 
 
-alias gs='ghcs'
-alias ge='ghce'
+alias gs='gh copilot suggest'
+alias ge='gh copilot explain'
 
 alias reload='exec $SHELL -l'
 
