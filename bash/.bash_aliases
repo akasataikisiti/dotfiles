@@ -34,8 +34,10 @@ alias pe='pet exec'
 alias pl='pet list'
 
 # cd directory
-alias cdd='cd ..'
-alias cddd='cd ../..'
+alias aa='cd ..'
+alias aaa='cd ../..'
+alias aaaa='cd ../../..'
+alias aaaaa='cd ../../../..'
 
 
 alias gs='gh copilot suggest'
@@ -43,4 +45,9 @@ alias ge='gh copilot explain'
 
 alias reload='exec $SHELL -l'
 
-
+# git
+alias g='git'
+alias gb='git branch'
+alias gbr='git branch --remote'
+alias gco='g co $(gb | fzf)'
+alias gcor='g co --track $(gb | fzf)'

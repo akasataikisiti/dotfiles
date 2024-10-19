@@ -1,6 +1,13 @@
 echo "read .bash_profile"
 export PATH="$PATH:~/bin"
 
+# nvimから呼ばれた時だけnv -> nvrにする
+if [[ "$(ps -o comm= $PPID)" == *"nvim"* ]] || [[ "$(ps -o comm= $PPID)" == *"vim"* ]]; then
+  echo "PPID is nvim!"
+  alias nv='nvr'
+else
+  echo "not from nvim (maybe login shell)"
+fi
 
 # bashrcにあったものをここで読み込むようにする
 if [ -f ~/.from_bashrc ]; then

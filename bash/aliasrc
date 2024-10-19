@@ -1,30 +1,6 @@
 #! /bin/bash
 echo "read aliasrc"
 
-# スクリプトフォルダをfzfで検索しエディタで開く
-se(){
-  du -a ~/.scripts/* | \
-  awk '{
-    if ($2 !~ /(stashdir|testdir|tags)/){
-      print $2
-    }
-  }' | \
-  fzf | \
-  xargs -r $EDITOR ;
-}
-
-# スクリプトフォルダをfzfで検索し実行
-es(){
-  du -a ~/.scripts/* | \
-  awk '{
-    if ($2 !~ /(stashdir|testdir|tags)/){
-      print $2
-    }
-  }' | \
-  fzf | \
-  xargs -rI {} bash -ci "{}";
-}
-
 # カレントディレクトリ配下をfzf検索しエディタで開く
 nf(){
   fzf | \
@@ -94,4 +70,61 @@ cu(){
   # 元のFZF_DEFAULT_OPTSを復元
   export FZF_DEFAULT_OPTS="$old_fzf_default_opts"
 }
+
+cf() {
+  local dir
+  local old_fzf_default_opts="$FZF_DEFAULT_OPTS"
+  export FZF_DEFAULT_OPTS="--cycle --preview 'tree -C {} | head -50'"
+  dir=$(find . -maxdepth 1 -type d -not -path '.' -printf '%P\n' | fzf )
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  fi
+  export FZF_DEFAULT_OPTS="$old_fzf_default_opts"
+}
+
+selemoji() {
+    # curl コマンドを実行してエラーが起きたらスクリプトを終了
+    local emojis=$(curl -sSL 'https://git.io/JXXO7')
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to fetch emojis." >&2
+        return 1
+    fi
+
+    # 空のチェック
+    if [ -z "$emojis" ]; then
+        echo "Error: No emojis found." >&2
+        return 1
+    fi
+
+    # fzf で絵文字を選択
+    local selected_emoji=$(echo "$emojis" | fzf)
+    if [ -z "$selected_emoji" ]; then
+        echo "No emoji selected."
+        return 1
+    fi
+
+    # 選択された絵文字を表示
+    echo "Selected emoji: $selected_emoji"
+    return 0
+}
+
+man-find() {
+    f=$(fd . $MANPATH/man${1:-1} -t f -x echo {/.} | fzf) && man $f
+}
+fman() {
+    man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+}
+fn() {
+    local man_page
+    man_page=$(man -k . \
+        | fzf -q "$1" \
+          --prompt='man> ' \
+          --preview $'echo {} | tr -d \'()\' | awk \'{print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' \
+        | tr -d '()' \
+        | awk '{print $1}')
+    [ -n "$man_page" ] && eval "nv -c \"Man $man_page | only\""
+}
+# Get the colors in the opened man page itself
+export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+
 

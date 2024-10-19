@@ -6,9 +6,20 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # zoxide使うために必要な記述
 eval "$(zoxide init bash)"
 
-# fzfコマンドの設定
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS='--preview "bat  --color=always --style=header,grid --line-range :500 {}"'
+# gh completion
+eval "$(gh completion -s bash)"
+
+# fzfコマンドの設定 (fdを使う : brew install fd)
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+export FZF_DEFAULT_OPTS='--cycle --no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--cycle --preview 'bat --color=always --line-range :50 {}'"
+
+export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
+export FZF_ALT_C_OPTS="--cycle --preview 'tree -C {} | head -50'"
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_OPTS='--preview "bat  --color=always --style=header,grid --line-range :500 {}"'
 # fzf用の設定ファイルの読み込み
 source ~/dotfiles/other_config/completion.bash
 source ~/dotfiles/other_config/key-bindings.bash
@@ -28,6 +39,10 @@ eval `ssh-agent`
 # あとで上のほうに切り替える (直接指定をやめる)
 # eval "$($(which mise) activate bash)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/mise activate bash)"
+
+# starship
+eval "$(starship init bash)"
+export STARSHIP_CONFIG=~/starship.toml
 
 # for haskell tool "stack"
 export PATH=~/.ghcup/bin:$PATH
@@ -69,4 +84,12 @@ alias nv='NVIM_APPNAME=$NVIM_MINE nvim'
 NVIM_VSCODE=vscode_nvim
 export NVIM_VSCODE
 alias vsn='NVIM_APPNAME=$NVIM_VSCODE nvim'
+
+# nvimから呼ばれた時だけnv -> nvrにする
+if [[ "$(ps -o comm= $PPID)" == *"nvim"* ]] || [[ "$(ps -o comm= $PPID)" == *"vim"* ]]; then
+  echo "PPID is nvim!"
+  alias nv='nvr'
+else
+  echo "not from nvim (maybe login shell)"
+fi
 
