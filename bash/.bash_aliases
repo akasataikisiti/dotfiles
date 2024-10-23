@@ -34,10 +34,10 @@ alias pe='pet exec'
 alias pl='pet list'
 
 # cd directory
-alias aa='cd ..'
-alias aaa='cd ../..'
-alias aaaa='cd ../../..'
-alias aaaaa='cd ../../../..'
+alias a='cd ..'
+alias aa='cd ../..'
+alias aaa='cd ../../..'
+alias aaaa='cd ../../../..'
 
 
 alias gs='gh copilot suggest'
