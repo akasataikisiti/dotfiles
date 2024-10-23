@@ -28,22 +28,18 @@ if [ -f ~/.inputrc ]; then
     . ~/.inputrc
 fi
 
+if [ -f ~/.for_others_from_bash_profile ]; then
+    . ~/.for_others_from_bash_profile
+fi
+
 # aliace追加
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# 2022/04/25追加( ~/.scriptとその配下のディレクトリをパスに追加 )
-if [ -d "$HOME/.scripts/" ]; then
-  export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
-fi
 
 if [ -f ~/aliasrc ]; then
     . ~/aliasrc
 fi
 
-if [ -f ~/.for_others_from_bash_profile ]; then
-    . ~/.for_others_from_bash_profile
-fi
-export PATH="/home/linuxbrew/.linuxbrew/opt/mysql-client/bin:$PATH"
-. "$HOME/.cargo/env"
+
