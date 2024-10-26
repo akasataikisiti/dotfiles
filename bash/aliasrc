@@ -119,10 +119,11 @@ fn() {
     man_page=$(man -k . \
         | fzf -q "$1" \
           --prompt='man> ' \
-          --preview $'echo {} | tr -d \'()\' | awk \'{print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' \
-        | tr -d '()' \
-        | awk '{print $1}')
+          --preview $'echo {} | awk -F \'[()]\' \'{print $2, $1}\' | xargs -r man | col -bx | bat -l man -p --color always' \
+          | awk -F '[()]' '{print $2, $1}')
     [ -n "$man_page" ] && eval "nv -c \"Man $man_page | only\""
+    # 生成される文字の確認
+    # printf "%s\n" "$man_page"
 }
 # Get the colors in the opened man page itself
 export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
