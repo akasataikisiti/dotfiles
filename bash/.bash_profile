@@ -1,22 +1,12 @@
 echo "read .bash_profile"
 export PATH="$PATH:~/bin"
 
-# nvimから呼ばれた時だけnv -> nvrにする
-if [[ "$(ps -o comm= $PPID)" == *"nvim"* ]] || [[ "$(ps -o comm= $PPID)" == *"vim"* ]]; then
-  echo "PPID is nvim!"
-  alias nv='nvr'
-else
-  echo "not from nvim (maybe login shell)"
-fi
-
 # bashrcにあったものをここで読み込むようにする
 if [ -f ~/.from_bashrc ]; then
     . ~/.from_bashrc
 fi
 
-
-# 既定editorをneovimにする(brewインストールとaptインストールでパスを分ける)
-# export EDITOR='/usr/bin/nvim'
+# 既定editorをneovimにする
 export EDITOR=$(which nvim)
 
 # history にコマンド実行時刻を記録する

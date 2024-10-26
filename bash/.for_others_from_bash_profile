@@ -85,7 +85,9 @@ NVIM_VSCODE=vscode_nvim
 export NVIM_VSCODE
 alias vsn='NVIM_APPNAME=$NVIM_VSCODE nvim'
 
-# nvimから呼ばれた時だけnv -> nvrにする
+
+# nvimから呼ばれた時だけnv -> nvrにする,
+# nvコマンドの設定のあとに実行されるべきなので個々に持ってきた
 if [[ "$(ps -o comm= $PPID)" == *"nvim"* ]] || [[ "$(ps -o comm= $PPID)" == *"vim"* ]]; then
   echo "PPID is nvim!"
   alias nv='nvr'
