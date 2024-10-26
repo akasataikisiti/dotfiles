@@ -37,8 +37,8 @@ eval `ssh-agent`
 
 # mise
 # あとで上のほうに切り替える (直接指定をやめる)
-# eval "$($(which mise) activate bash)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/mise activate bash)"
+eval "$($(which mise) activate bash)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/mise activate bash)"
 
 # starship
 eval "$(starship init bash)"

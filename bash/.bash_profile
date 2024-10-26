@@ -12,6 +12,8 @@ export EDITOR=$(which nvim)
 # history にコマンド実行時刻を記録する
 HISTTIMEFORMAT='%Y-%m-%d T%T%z '
 
+HISTCONTROL=erasedups
+HISTOIGNORE="&:ls:ll:la:history:cd::"
 
 # inputrc追加
 if [ -f ~/.inputrc ]; then
