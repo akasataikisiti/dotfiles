@@ -72,6 +72,10 @@ NVIM_PAQ2=nvim-paq2
 export NVIM_PAQ2
 alias npp='NVIM_APPNAME=$NVIM_PAQ2 nvim'
 
+# adibhanna vim
+NVIM_ADI=nvim-adi
+export NVIM_ADI
+alias na='NVIM_APPNAME=$NVIM_ADI nvim'
 
 # github copilot cli
 eval "$(gh copilot alias -- bash)"
