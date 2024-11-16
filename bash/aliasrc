@@ -3,9 +3,12 @@ echo "read aliasrc"
 
 # カレントディレクトリ配下をfzf検索しエディタで開く
 nf(){
+  NVIM_LAZY_MINE=nvim-lazy-mine
   fzf | \
-  xargs -rI {} $EDITOR "{}" ;
+  xargs -rI {} sh -c 'NVIM_APPNAME=$NVIM_LAZY_MINE nvim "$1"' -- {}; # nvim-lazy-mineを使いたいため無理やり
+  # xargs -rI {} $EDITOR "{}" ;  # betternvimのせいで自分のエディタが起動しない
 }
+
 
 # Manページをvimで開く
 nam(){  eval "nv -c \"Man $1 | only\"" ; }
