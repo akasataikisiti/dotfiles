@@ -19,11 +19,11 @@
 
 ; git difftoolでnvimが使用されるようにする
 [difftool]
-  prompt = false
+	prompt = true
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+    cmd = nvim -d "$LOCAL" "$REMOTE"
 
 
 
