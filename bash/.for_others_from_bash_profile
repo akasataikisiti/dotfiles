@@ -2,6 +2,7 @@ echo "read .for_others_from_bash_profile"
 
 # linuxbrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export HOMEBREW_EDITOR=vim
 
 # zoxide使うために必要な記述
 eval "$(zoxide init bash)"

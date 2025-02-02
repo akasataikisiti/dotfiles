@@ -1,0 +1,4 @@
+keycode 100 = BackSpace
+keycode 102 = Control_L
+clear control
+add Control = Control_L
